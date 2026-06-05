@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Journal Reading by @dokrifqi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --red-900:  #7f1d1d;
+      --red-800:  #991b1b;
+      --red-700:  #b91c1c;
+      --red-600:  #dc2626;
+      --red-500:  #ef4444;
+      --red-200:  #fecaca;
+      --red-100:  #fee2e2;
+      --red-50:   #fff5f5;
+
+      --cream:    #faf8f5;
+      --warm-50:  #f9f6f1;
+      --warm-100: #f0ebe3;
+      --warm-200: #e2d9ce;
+      --warm-300: #c8bdb0;
+      --warm-400: #a89488;
+      --warm-500: #8a7469;
+      --warm-700: #5c4a42;
+      --warm-800: #3d302b;
+      --warm-900: #241c18;
+
+      --text-primary:   #1e1412;
+      --text-secondary: #5c4a42;
+      --text-muted:     #9c867a;
+      --text-faint:     #c8b8b0;
+
+      --border-light: #e8ddd6;
+      --border-mid:   #d4c4ba;
+
+      --shadow-sm: 0 1px 3px rgba(127,29,29,0.06), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 12px rgba(127,29,29,0.08), 0 2px 6px rgba(0,0,0,0.05);
+      --shadow-lg: 0 8px 24px rgba(127,29,29,0.10), 0 4px 10px rgba(0,0,0,0.06);
+
+      --ff-display: 'Libre Baskerville', Georgia, serif;
+      --ff-body:    'DM Sans', system-ui, sans-serif;
+      --ff-mono:    'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--ff-body);
+      background: var(--cream);
+      color: var(--text-primary);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      background: var(--red-900);
+      border-bottom: 3px solid var(--red-700);
+      padding: 0 28px;
+      position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 2px 16px rgba(127,29,29,0.30);
+    }
+    .header-inner {
+      max-width: 1440px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .logo-wrap {
+      display: flex; align-items: center; gap: 14px;
+    }
+    .logo-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.20);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .app-name {
+      font-family: var(--ff-display);
+      font-size: 1.15rem; font-weight: 700;
+      color: #fff; letter-spacing: -0.3px; line-height: 1.2;
+    }
+    .app-sub {
+      font-family: var(--ff-mono);
+      font-size: 0.6rem; color: rgba(255,255,255,0.45);
+      letter-spacing: 0.14em; margin-top: 2px;
+    }
+    .app-sub span { color: rgba(255,200,200,0.7); }
+    .header-chips { display: flex; align-items: center; gap: 8px; }
+    .chip {
+      font-family: var(--ff-mono);
+      font-size: 0.62rem; font-weight: 500;
+      padding: 4px 11px; border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.18);
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.06em;
+    }
+    .chip.active {
+      background: rgba(255,255,255,0.12);
+      color: rgba(255,220,220,0.85);
+      border-color: rgba(255,255,255,0.25);
+    }
+
+    /* ── INFOBAR ── */
+    .infobar {
+      background: var(--warm-50);
+      border-bottom: 1px solid var(--border-light);
+      padding: 9px 28px;
+    }
+    .infobar-inner {
+      max-width: 1440px; margin: 0 auto;
+      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    }
+    .infobar p {
+      font-size: 0.76rem; color: var(--text-muted); line-height: 1.6;
+    }
+    .infobar strong { color: var(--red-700); }
+    .infobar em { color: var(--text-secondary); font-style: normal; font-weight: 600; }
+
+    /* ── MAIN LAYOUT ── */
+    .main {
+      max-width: 1440px; margin: 0 auto;
+      padding: 24px 28px 60px;
+      display: flex; gap: 20px; align-items: flex-start;
+    }
+
+    /* ── LEFT PANEL ── */
+    .left-panel {
+      width: 37%; flex-shrink: 0;
+      position: sticky; top: 88px;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .panel-heading {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 2px;
+    }
+    .panel-title {
+      font-family: var(--ff-display);
+      font-size: 0.9rem; font-weight: 700;
+      color: var(--text-primary);
+    }
+    .panel-sub {
+      font-family: var(--ff-mono);
+      font-size: 0.6rem; color: var(--text-faint);
+      letter-spacing: 0.05em; margin-top: 1px;
+    }
+    .clear-all-btn {
+      font-family: var(--ff-mono);
+      font-size: 0.65rem; color: var(--text-faint);
+      background: none; border: none; cursor: pointer;
+      padding: 4px 8px; border-radius: 6px;
+      display: flex; align-items: center; gap: 5px;
+      transition: color 0.15s, background 0.15s;
+    }
+    .clear-all-btn:hover { color: var(--red-600); background: var(--red-50); }
+
+    /* Input card */
+    .input-card {
+      background: #fff;
+      border: 1.5px solid var(--border-light);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .input-card:focus-within {
+      border-color: var(--red-300, #fca5a5);
+      box-shadow: 0 0 0 3px rgba(220,38,38,0.07), var(--shadow-sm);
+    }
+    .input-card-head {
+      display: flex; align-items: center; gap: 9px;
+      padding: 9px 13px;
+      background: var(--warm-50);
+      border-bottom: 1px solid var(--border-light);
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.15s;
+    }
+    .input-card-head:hover { background: var(--warm-100); }
+    .card-stripe {
+      width: 4px; height: 28px; border-radius: 3px; flex-shrink: 0;
+    }
+    .card-label {
+      font-family: var(--ff-body);
+      font-size: 0.76rem; font-weight: 600;
+      color: var(--text-secondary); flex: 1;
+    }
+    .card-badge {
+      font-family: var(--ff-mono);
+      font-size: 0.58rem; font-weight: 500;
+      padding: 2px 8px; border-radius: 999px;
+      letter-spacing: 0.06em;
+    }
+    .card-arrow {
+      font-size: 0.6rem; color: var(--text-faint);
+      transition: transform 0.2s;
+    }
+    .card-arrow.open { transform: rotate(180deg); }
+
+    .card-body { overflow: hidden; transition: max-height 0.25s ease; }
+    .card-body.collapsed { max-height: 0 !important; }
+
+    .card-textarea {
+      font-family: var(--ff-body);
+      font-size: 0.8rem; line-height: 1.72;
+      background: #fff; border: none; outline: none;
+      color: var(--text-primary);
+      width: 100%; padding: 11px 13px;
+      resize: none; display: block;
+    }
+    .card-textarea::placeholder { color: var(--text-faint); font-style: italic; }
+    .card-textarea::-webkit-scrollbar { width: 4px; }
+    .card-textarea::-webkit-scrollbar-thumb { background: var(--warm-200); border-radius: 99px; }
+
+    .card-footer {
+      display: flex; justify-content: flex-end;
+      padding: 3px 12px 7px;
+      background: var(--warm-50);
+      border-top: 1px solid var(--border-light);
+    }
+    .char-info {
+      font-family: var(--ff-mono);
+      font-size: 0.6rem; color: var(--text-faint);
+    }
+
+    /* Apply-to-module button */
+    .apply-btn {
+      font-family: var(--ff-body);
+      font-size: 0.72rem; font-weight: 600;
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 14px; border-radius: 7px;
+      cursor: pointer; border: none;
+      transition: all 0.18s ease;
+      white-space: nowrap; letter-spacing: 0.01em;
+    }
+    .apply-btn:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); }
+    .apply-btn:active { transform: translateY(0); }
+    .apply-btn.done {
+      background: #dcfce7 !important;
+      color: #15803d !important;
+      pointer-events: none;
+    }
+    .apply-btn.ab1 { background: var(--red-700); color: #fff; }
+    .apply-btn.ab1:hover { background: var(--red-800); }
+    .apply-btn.ab2 { background: #b45309; color: #fff; }
+    .apply-btn.ab2:hover { background: #92400e; }
+    .apply-btn.ab3 { background: #166534; color: #fff; }
+    .apply-btn.ab3:hover { background: #14532d; }
+    .apply-btn.ab4 { background: #3730a3; color: #fff; }
+    .apply-btn.ab4:hover { background: #312e81; }
+    .apply-btn.ab5 { background: #0f766e; color: #fff; }
+    .apply-btn.ab5:hover { background: #0d6b64; }
+
+    /* Legend */
+    .legend {
+      background: #fff;
+      border: 1px solid var(--border-light);
+      border-radius: 10px;
+      padding: 11px 14px;
+      box-shadow: var(--shadow-sm);
+    }
+    .legend-title {
+      font-family: var(--ff-mono);
+      font-size: 0.58rem; color: var(--text-faint);
+      letter-spacing: 0.08em; margin-bottom: 8px;
+    }
+    .legend-row {
+      display: flex; align-items: center; gap: 9px;
+      font-family: var(--ff-body);
+      font-size: 0.7rem; color: var(--text-muted);
+      margin-bottom: 5px;
+    }
+    .legend-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+
+    /* ── RIGHT PANEL ── */
+    .right-panel { flex: 1; min-width: 0; }
+
+    /* Tab bar */
+    .tab-bar {
+      display: flex; gap: 3px;
+      background: var(--warm-100);
+      border: 1px solid var(--border-light);
+      border-radius: 12px; padding: 4px;
+      margin-bottom: 14px;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .tab-btn {
+      font-family: var(--ff-mono);
+      font-size: 0.68rem; font-weight: 500;
+      display: flex; align-items: center; gap: 6px;
+      padding: 8px 14px; border-radius: 9px;
+      border: 1px solid transparent;
+      background: transparent; color: var(--text-faint);
+      cursor: pointer; transition: all 0.17s;
+      white-space: nowrap; flex: 1; justify-content: center;
+      letter-spacing: 0.03em;
+    }
+    .tab-btn:hover:not(.active) {
+      background: rgba(255,255,255,0.6);
+      color: var(--text-secondary);
+    }
+    .tab-btn.active {
+      background: #fff;
+      color: var(--red-800);
+      border-color: var(--border-mid);
+      box-shadow: var(--shadow-sm);
+      font-weight: 600;
+    }
+    .tab-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+
+    /* Meta bar */
+    .meta-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .meta-left { display: flex; align-items: center; gap: 9px; }
+    .meta-label {
+      font-family: var(--ff-display);
+      font-size: 0.9rem; font-weight: 700;
+      color: var(--text-primary);
+    }
+    .meta-badge {
+      font-family: var(--ff-mono);
+      font-size: 0.58rem; font-weight: 500;
+      padding: 2px 9px; border-radius: 999px;
+      letter-spacing: 0.07em;
+    }
+    .copy-all-btn {
+      font-family: var(--ff-mono);
+      font-size: 0.65rem; font-weight: 600;
+      display: flex; align-items: center; gap: 6px;
+      padding: 7px 14px; border-radius: 8px;
+      border: 1px solid var(--border-mid);
+      background: #fff; color: var(--text-secondary);
+      cursor: pointer; transition: all 0.17s;
+      box-shadow: var(--shadow-sm);
+    }
+    .copy-all-btn:hover { background: var(--red-50); border-color: var(--red-200); color: var(--red-700); }
+
+    /* Tab panels */
+    .tab-panel { display: none; animation: panelIn 0.2s ease-out; }
+    .tab-panel.active { display: block; }
+    @keyframes panelIn {
+      from { opacity: 0; transform: translateY(5px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Module card */
+    .mod-card {
+      background: #fff;
+      border: 1.5px solid var(--border-light);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+    }
+    .mod-stripe { height: 4px; }
+
+    .mod-card-inner { padding: 20px 22px; }
+
+    .mod-header {
+      display: flex; align-items: center; gap: 13px;
+      margin-bottom: 14px;
+    }
+    .mod-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .mod-title {
+      font-family: var(--ff-display);
+      font-size: 0.95rem; font-weight: 700;
+      color: var(--text-primary); line-height: 1.3;
+    }
+    .mod-source {
+      font-family: var(--ff-mono);
+      font-size: 0.62rem; color: var(--text-faint);
+      margin-top: 3px;
+    }
+    .mod-source strong { color: var(--text-muted); }
+
+    .mod-divider {
+      height: 1px; background: var(--border-light); margin-bottom: 14px;
+    }
+
+    .mod-desc {
+      background: var(--warm-50);
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 10px 13px; margin-bottom: 14px;
+      font-size: 0.73rem; color: var(--text-muted);
+      line-height: 1.68;
+    }
+    .mod-desc strong { color: var(--text-secondary); }
+    .mod-desc em { font-style: normal; color: var(--red-700); font-weight: 600; }
+
+    /* Prompt preview */
+    .prompt-box {
+      font-family: var(--ff-mono);
+      font-size: 0.69rem; line-height: 1.72;
+      background: var(--warm-50);
+      border: 1.5px solid var(--border-light);
+      border-radius: 10px;
+      padding: 14px 16px;
+      color: var(--text-faint);
+      height: 310px;
+      overflow-y: auto;
+      white-space: pre-wrap; word-break: break-word;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .prompt-box.filled {
+      color: var(--text-secondary);
+      border-color: var(--border-mid);
+    }
+    .prompt-box::-webkit-scrollbar { width: 4px; }
+    .prompt-box::-webkit-scrollbar-thumb { background: var(--warm-200); border-radius: 99px; }
+
+    /* Copy button */
+    .copy-btn {
+      font-family: var(--ff-body);
+      font-weight: 600; font-size: 0.78rem;
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 9px 20px; border-radius: 9px;
+      cursor: pointer; transition: all 0.17s;
+      margin-top: 13px;
+      float: right;
+    }
+    .copy-btn:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); }
+    .copy-btn.copied {
+      background: #f0fdf4 !important;
+      border-color: #86efac !important;
+      color: #15803d !important;
+    }
+    .clearfix::after { content:''; display:table; clear:both; }
+
+    /* ── COLOR TOKENS per module ── */
+    /* M1 — crimson/red */
+    .c1-stripe { background: linear-gradient(90deg, var(--red-700), var(--red-500)); }
+    .c1-icon   { background: var(--red-50); border: 1px solid var(--red-100); }
+    .c1-icon svg { stroke: var(--red-700); }
+    .c1-badge  { background: var(--red-50); border: 1px solid var(--red-200); color: var(--red-800); }
+    .c1-dot    { background: var(--red-600); }
+    .c1-copy   { background: var(--red-50); border: 1.5px solid var(--red-200); color: var(--red-800); }
+    .c1-copy:hover { background: var(--red-100); border-color: var(--red-400, #f87171); }
+    .c1-tab.active .tab-dot { background: var(--red-600); }
+
+    /* M2 — amber/warm gold */
+    .c2-stripe { background: linear-gradient(90deg, #b45309, #d97706); }
+    .c2-icon   { background: #fffbeb; border: 1px solid #fde68a; }
+    .c2-icon svg { stroke: #b45309; }
+    .c2-badge  { background: #fffbeb; border: 1px solid #fde68a; color: #92400e; }
+    .c2-dot    { background: #d97706; }
+    .c2-copy   { background: #fffbeb; border: 1.5px solid #fde68a; color: #92400e; }
+    .c2-copy:hover { background: #fef3c7; }
+
+    /* M3 — forest green */
+    .c3-stripe { background: linear-gradient(90deg, #166534, #16a34a); }
+    .c3-icon   { background: #f0fdf4; border: 1px solid #bbf7d0; }
+    .c3-icon svg { stroke: #166534; }
+    .c3-badge  { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+    .c3-dot    { background: #16a34a; }
+    .c3-copy   { background: #f0fdf4; border: 1.5px solid #bbf7d0; color: #14532d; }
+    .c3-copy:hover { background: #dcfce7; }
+
+    /* M4 — indigo/navy */
+    .c4-stripe { background: linear-gradient(90deg, #3730a3, #4f46e5); }
+    .c4-icon   { background: #eef2ff; border: 1px solid #c7d2fe; }
+    .c4-icon svg { stroke: #3730a3; }
+    .c4-badge  { background: #eef2ff; border: 1px solid #c7d2fe; color: #312e81; }
+    .c4-dot    { background: #4f46e5; }
+    .c4-copy   { background: #eef2ff; border: 1.5px solid #c7d2fe; color: #312e81; }
+    .c4-copy:hover { background: #e0e7ff; }
+
+    /* M5 — teal */
+    .c5-stripe { background: linear-gradient(90deg, #0f766e, #0d9488); }
+    .c5-icon   { background: #f0fdfa; border: 1px solid #99f6e4; }
+    .c5-icon svg { stroke: #0f766e; }
+    .c5-badge  { background: #f0fdfa; border: 1px solid #99f6e4; color: #134e4a; }
+    .c5-dot    { background: #0d9488; }
+    .c5-copy   { background: #f0fdfa; border: 1.5px solid #99f6e4; color: #134e4a; }
+    .c5-copy:hover { background: #ccfbf1; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border-light);
+      background: var(--warm-50);
+      padding: 14px 28px;
+    }
+    .footer-inner {
+      max-width: 1440px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      font-family: var(--ff-mono);
+      font-size: 0.62rem; color: var(--text-faint);
+      flex-wrap: wrap; gap: 6px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .main { flex-direction: column; }
+      .left-panel { width: 100%; position: static; }
+      .right-panel { width: 100%; }
+    }
+    @media (max-width: 640px) {
+      .header-chips { display: none; }
+      .tab-label { display: none; }
+      .tab-btn { padding: 9px; flex: none; }
+      .main { padding: 16px 14px 40px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════ HEADER ══════ -->
+<header class="header">
+  <div class="header-inner">
+    <div class="logo-wrap">
+      <div class="logo-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2">
+          <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5.586a1 1 0 0 1 .707.293l5.414 5.414a1 1 0 0 1 .293.707V19a2 2 0 0 1-2 2z"/>
+        </svg>
+      </div>
+      <div>
+        <div class="app-name">Journal Reading</div>
+        <div class="app-sub">EBM PROMPT GENERATOR · <span>@dokrifqi</span></div>
+      </div>
+    </div>
+    <div class="header-chips">
+      <span class="chip active">5 Modul EBM</span>
+      <span class="chip">Evidence-Based</span>
+      <span class="chip">Clinical Grade</span>
+    </div>
+  </div>
+</header>
+
+<!-- ══════ INFOBAR ══════ -->
+<div class="infobar">
+  <div class="infobar-inner">
+    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#b91c1c" stroke-width="2" style="flex-shrink:0"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+    <p>Isi atau tempelkan teks di <strong>5 kotak input</strong> di kiri → klik tombol <em>"Kirim ke Modul"</em> untuk langsung membuka tab prompt yang sesuai → klik <em>"Salin Prompt"</em> dan pastekan ke Claude atau ChatGPT.</p>
+  </div>
+</div>
+
+<!-- ══════ MAIN ══════ -->
+<main class="main">
+
+  <!-- ══ LEFT ══ -->
+  <div class="left-panel">
+
+    <div class="panel-heading">
+      <div>
+        <div class="panel-title">Input Teks Jurnal</div>
+        <div class="panel-sub">5 BAGIAN → 5 MODUL EBM</div>
+      </div>
+      <button class="clear-all-btn" onclick="clearAll()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg>
+        Hapus Semua
+      </button>
+    </div>
+
+    <!-- Card 1 -->
+    <div class="input-card">
+      <div class="input-card-head" onclick="toggleCard(1)">
+        <div class="card-stripe c1-dot" style="width:4px;height:28px;border-radius:3px;flex-shrink:0;"></div>
+        <span class="card-label">Abstrak / Teks Jurnal Utama</span>
+        <span class="card-badge c1-badge">→ PICO</span>
+        <span class="card-arrow open" id="arr1">▾</span>
+      </div>
+      <div class="card-body" id="cbody1" style="max-height:200px;">
+        <textarea class="card-textarea" id="input1" rows="6"
+          placeholder="Tempelkan teks abstrak atau isi jurnal lengkap di sini…"
+          oninput="updateModule(1)" onpaste="handlePaste(1)"></textarea>
+        <div class="card-footer" style="justify-content:space-between;align-items:center;padding:6px 12px 8px;">
+          <span class="char-info" id="info1">0 karakter</span>
+          <button class="apply-btn ab1" id="abtn1" onclick="applyToModule(1)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+            Kirim ke Modul PICO
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="input-card">
+      <div class="input-card-head" onclick="toggleCard(2)">
+        <div class="card-stripe c2-dot" style="width:4px;height:28px;border-radius:3px;flex-shrink:0;"></div>
+        <span class="card-label">Bagian Metodologi / Metode</span>
+        <span class="card-badge c2-badge">→ I² Stat</span>
+        <span class="card-arrow open" id="arr2">▾</span>
+      </div>
+      <div class="card-body" id="cbody2" style="max-height:200px;">
+        <textarea class="card-textarea" id="input2" rows="6"
+          placeholder="Tempelkan bagian Methods atau Methodology di sini…"
+          oninput="updateModule(2)" onpaste="handlePaste(2)"></textarea>
+        <div class="card-footer" style="justify-content:space-between;align-items:center;padding:6px 12px 8px;">
+          <span class="char-info" id="info2">0 karakter</span>
+          <button class="apply-btn ab2" id="abtn2" onclick="applyToModule(2)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+            Kirim ke Modul I²
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="input-card">
+      <div class="input-card-head" onclick="toggleCard(3)">
+        <div class="card-stripe c3-dot" style="width:4px;height:28px;border-radius:3px;flex-shrink:0;"></div>
+        <span class="card-label">Hasil Utama / Kata Kunci Angka</span>
+        <span class="card-badge c3-badge">→ Forest</span>
+        <span class="card-arrow open" id="arr3">▾</span>
+      </div>
+      <div class="card-body" id="cbody3" style="max-height:200px;">
+        <textarea class="card-textarea" id="input3" rows="6"
+          placeholder="Tempelkan paragraf hasil utama, OR/RR/MD, 95% CI, nilai p…"
+          oninput="updateModule(3)" onpaste="handlePaste(3)"></textarea>
+        <div class="card-footer" style="justify-content:space-between;align-items:center;padding:6px 12px 8px;">
+          <span class="char-info" id="info3">0 karakter</span>
+          <button class="apply-btn ab3" id="abtn3" onclick="applyToModule(3)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+            Kirim ke Forest Plot
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="input-card">
+      <div class="input-card-head" onclick="toggleCard(4)">
+        <div class="card-stripe c4-dot" style="width:4px;height:28px;border-radius:3px;flex-shrink:0;"></div>
+        <span class="card-label">Bagian Hasil (Data Statistik)</span>
+        <span class="card-badge c4-badge">→ Translasi</span>
+        <span class="card-arrow open" id="arr4">▾</span>
+      </div>
+      <div class="card-body" id="cbody4" style="max-height:200px;">
+        <textarea class="card-textarea" id="input4" rows="6"
+          placeholder="Tempelkan paragraf Results yang memuat nilai RR, OR, dan 95% CI…"
+          oninput="updateModule(4)" onpaste="handlePaste(4)"></textarea>
+        <div class="card-footer" style="justify-content:space-between;align-items:center;padding:6px 12px 8px;">
+          <span class="char-info" id="info4">0 karakter</span>
+          <button class="apply-btn ab4" id="abtn4" onclick="applyToModule(4)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+            Kirim ke Translasi
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="input-card">
+      <div class="input-card-head" onclick="toggleCard(5)">
+        <div class="card-stripe c5-dot" style="width:4px;height:28px;border-radius:3px;flex-shrink:0;"></div>
+        <span class="card-label">Kesimpulan / Diskusi</span>
+        <span class="card-badge c5-badge">→ Aplikasi</span>
+        <span class="card-arrow open" id="arr5">▾</span>
+      </div>
+      <div class="card-body" id="cbody5" style="max-height:200px;">
+        <textarea class="card-textarea" id="input5" rows="6"
+          placeholder="Tempelkan bagian Conclusion atau Discussion di sini…"
+          oninput="updateModule(5)" onpaste="handlePaste(5)"></textarea>
+        <div class="card-footer" style="justify-content:space-between;align-items:center;padding:6px 12px 8px;">
+          <span class="char-info" id="info5">0 karakter</span>
+          <button class="apply-btn ab5" id="abtn5" onclick="applyToModule(5)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+            Kirim ke Aplikasi
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Legend -->
+    <div class="legend">
+      <div class="legend-title">PANDUAN PENGISIAN</div>
+      <div class="legend-row"><div class="legend-dot c1-dot"></div>Kotak 1 → Ekstraksi PICO dari abstrak</div>
+      <div class="legend-row"><div class="legend-dot c2-dot"></div>Kotak 2 → Analisis I² &amp; kualitas studi</div>
+      <div class="legend-row"><div class="legend-dot c3-dot"></div>Kotak 3 → Dekode Forest Plot &amp; CI</div>
+      <div class="legend-row"><div class="legend-dot c4-dot"></div>Kotak 4 → Translasi RR/OR ke % risiko</div>
+      <div class="legend-row" style="margin-bottom:0;"><div class="legend-dot c5-dot"></div>Kotak 5 → Checklist aplikabilitas klinis</div>
+    </div>
+
+  </div><!-- /left-panel -->
+
+  <!-- ══ RIGHT ══ -->
+  <div class="right-panel">
+
+    <!-- Tab bar -->
+    <div class="tab-bar">
+      <button class="tab-btn active" data-tab="1" onclick="switchTab(1)">
+        <span class="tab-dot c1-dot"></span><span class="tab-label">PICO</span>
+      </button>
+      <button class="tab-btn" data-tab="2" onclick="switchTab(2)">
+        <span class="tab-dot c2-dot"></span><span class="tab-label">I² Stat</span>
+      </button>
+      <button class="tab-btn" data-tab="3" onclick="switchTab(3)">
+        <span class="tab-dot c3-dot"></span><span class="tab-label">Forest Plot</span>
+      </button>
+      <button class="tab-btn" data-tab="4" onclick="switchTab(4)">
+        <span class="tab-dot c4-dot"></span><span class="tab-label">Translasi</span>
+      </button>
+      <button class="tab-btn" data-tab="5" onclick="switchTab(5)">
+        <span class="tab-dot c5-dot"></span><span class="tab-label">Aplikasi</span>
+      </button>
+    </div>
+
+    <!-- Meta bar -->
+    <div class="meta-bar">
+      <div class="meta-left">
+        <span class="meta-label" id="activeLabel">Modul 1 — Ekstraksi PICO</span>
+        <span class="meta-badge c1-badge" id="activeBadge">PICO</span>
+      </div>
+      <button class="copy-all-btn" id="copyAllBtn" onclick="copyAllPrompts()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Salin Semua
+      </button>
+    </div>
+
+    <!-- PANEL 1 -->
+    <div class="tab-panel active" id="panel1">
+      <div class="mod-card">
+        <div class="mod-stripe c1-stripe"></div>
+        <div class="mod-card-inner">
+          <div class="mod-header">
+            <div class="mod-icon c1-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            </div>
+            <div>
+              <div class="mod-title">Modul 1 — Ekstraksi PICO</div>
+              <div class="mod-source">Sumber input: <strong>Kotak 1</strong> (Abstrak / Teks Jurnal Utama)</div>
+            </div>
+          </div>
+          <div class="mod-divider"></div>
+          <div class="mod-desc">
+            <strong>Ahli EBM.</strong> Mengekstrak elemen P · I · C · O dari abstrak beserta bottom-line klinis dalam bahasa Indonesia. Isi <em>Kotak 1</em> di kiri untuk mengaktifkan prompt ini.
+          </div>
+          <div class="prompt-box" id="preview1"></div>
+          <div class="clearfix">
+            <button class="copy-btn c1-copy" onclick="copyPrompt(1,this)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span class="btn-label">Salin Prompt</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL 2 -->
+    <div class="tab-panel" id="panel2">
+      <div class="mod-card">
+        <div class="mod-stripe c2-stripe"></div>
+        <div class="mod-card-inner">
+          <div class="mod-header">
+            <div class="mod-icon c2-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke-width="2"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+            </div>
+            <div>
+              <div class="mod-title">Modul 2 — Heterogenitas I²</div>
+              <div class="mod-source">Sumber input: <strong>Kotak 2</strong> (Bagian Metodologi / Metode)</div>
+            </div>
+          </div>
+          <div class="mod-divider"></div>
+          <div class="mod-desc">
+            <strong>Ahli Statistik Medis.</strong> Mengevaluasi nilai I² &amp; risiko bias. Memberikan peringatan otomatis jika I² &gt; 50%. Isi <em>Kotak 2</em> di kiri untuk mengaktifkan prompt ini.
+          </div>
+          <div class="prompt-box" id="preview2"></div>
+          <div class="clearfix">
+            <button class="copy-btn c2-copy" onclick="copyPrompt(2,this)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span class="btn-label">Salin Prompt</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL 3 -->
+    <div class="tab-panel" id="panel3">
+      <div class="mod-card">
+        <div class="mod-stripe c3-stripe"></div>
+        <div class="mod-card-inner">
+          <div class="mod-header">
+            <div class="mod-icon c3-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="12" y1="3" x2="12" y2="21"/><circle cx="12" cy="12" r="4"/></svg>
+            </div>
+            <div>
+              <div class="mod-title">Modul 3 — Dekode Forest Plot</div>
+              <div class="mod-source">Sumber input: <strong>Kotak 3</strong> (Hasil Utama / Kata Kunci Angka)</div>
+            </div>
+          </div>
+          <div class="mod-divider"></div>
+          <div class="mod-desc">
+            <strong>Ahli Biostatistika Klinik.</strong> Mendekode pooled estimate (OR/RR/MD), posisi berlian, 95% CI, dan signifikansi statistik. Isi <em>Kotak 3</em> di kiri untuk mengaktifkan prompt ini.
+          </div>
+          <div class="prompt-box" id="preview3"></div>
+          <div class="clearfix">
+            <button class="copy-btn c3-copy" onclick="copyPrompt(3,this)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span class="btn-label">Salin Prompt</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL 4 -->
+    <div class="tab-panel" id="panel4">
+      <div class="mod-card">
+        <div class="mod-stripe c4-stripe"></div>
+        <div class="mod-card-inner">
+          <div class="mod-header">
+            <div class="mod-icon c4-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <div class="mod-title">Modul 4 — Translasi Klinis RR/OR</div>
+              <div class="mod-source">Sumber input: <strong>Kotak 4</strong> (Bagian Hasil / Data Statistik)</div>
+            </div>
+          </div>
+          <div class="mod-divider"></div>
+          <div class="mod-desc">
+            <strong>Ahli Translasional EBM.</strong> Menghitung persentase penurunan/peningkatan risiko dari RR/OR secara matematis. Isi <em>Kotak 4</em> di kiri untuk mengaktifkan prompt ini.
+          </div>
+          <div class="prompt-box" id="preview4"></div>
+          <div class="clearfix">
+            <button class="copy-btn c4-copy" onclick="copyPrompt(4,this)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span class="btn-label">Salin Prompt</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL 5 -->
+    <div class="tab-panel" id="panel5">
+      <div class="mod-card">
+        <div class="mod-stripe c5-stripe"></div>
+        <div class="mod-card-inner">
+          <div class="mod-header">
+            <div class="mod-icon c5-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            </div>
+            <div>
+              <div class="mod-title">Modul 5 — Aplikabilitas Klinis</div>
+              <div class="mod-source">Sumber input: <strong>Kotak 5</strong> (Kesimpulan / Diskusi)</div>
+            </div>
+          </div>
+          <div class="mod-divider"></div>
+          <div class="mod-desc">
+            <strong>Konsultan Implementasi Klinis.</strong> Mengekstrak bottom-line, profil efek samping, &amp; checklist aplikabilitas termasuk aspek BPJS. Isi <em>Kotak 5</em> di kiri untuk mengaktifkan prompt ini.
+          </div>
+          <div class="prompt-box" id="preview5"></div>
+          <div class="clearfix">
+            <button class="copy-btn c5-copy" onclick="copyPrompt(5,this)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span class="btn-label">Salin Prompt</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /right-panel -->
+</main>
+
+<!-- ══════ FOOTER ══════ -->
+<footer>
+  <div class="footer-inner">
+    <span>Dibuat untuk kemudahan analisis klinis berbasis bukti</span>
+    <span>Journal Reading · @dokrifqi · EBM Tools v3.0</span>
+  </div>
+</footer>
+
+<script>
+// ══ TEMPLATES ══
+const T = {
+  1:`Bertindaklah sebagai Ahli Evidence-Based Medicine (EBM).
+Tugas Anda adalah membaca abstrak/teks jurnal medis yang saya berikan di bawah ini dan mengekstrak elemen PICO secara akurat, singkat, dan berfokus pada klinis.
+
+ATURAN EKSTRAKSI:
+Jangan menambahkan informasi dari luar teks yang saya berikan (Dilarang berhalusinasi).
+Jika ada elemen PICO yang tidak disebutkan dalam teks, tuliskan "Tidak disebutkan secara eksplisit".
+Gunakan bahasa Indonesia yang mudah dipahami, namun tetap pertahankan istilah medis aslinya dalam kurung jika diperlukan.
+
+FORMAT JAWABAN YANG SAYA MINTA:
+P - Patient/Population/Problem:
+(Jelaskan diagnosis spesifik, kriteria inklusi penting, usia, dan jumlah sampel/N jika ada).
+
+I - Intervention/Exposure:
+(Jelaskan tindakan, obat, dosis, atau prosedur utama yang sedang diuji).
+
+C - Comparison/Control:
+(Jelaskan kelompok pembandingnya. Apakah plasebo, standar perawatan, atau tidak ada pembanding?).
+
+O - Outcome (Hasil):
+(Sebutkan hanya primary outcome atau hasil klinis utama yang diukur, dan bagaimana hasil akhirnya secara statistik yang paling relevan).
+
+Kesimpulan Klinis (Bottom-Line):
+(Buat 1-2 kalimat kesimpulan apakah intervensi ini direkomendasikan berdasarkan hasil penelitian tersebut).
+
+TEKS JURNAL/ABSTRAK:
+`,
+  2:`Bertindaklah sebagai Ahli Statistik Medis dan Evidence-Based Medicine (EBM).
+Tugas Anda adalah membaca bagian Metodologi dan Hasil dari teks jurnal meta-analisis yang saya berikan, lalu mengekstrak data mengenai kualitas penelitian dan heterogenitas data.
+
+ATURAN EKSTRAKSI & LOGIKA ANALISIS:
+Cari angka untuk nilai I² (Indeks Heterogenitas) atau Cochran's Q dari hasil utama (primary outcome).
+ATURAN PERINGATAN (CRITICAL): Jika nilai I² > 50%, Anda WAJIB memberikan label [⚠️ PERINGATAN HETEROGENITAS TINGGI] dan jelaskan bahwa kesimpulan jurnal ini kurang kuat karena penelitian yang digabungkan terlalu berbeda secara klinis atau metodologis.
+Identifikasi alat ukur kualitas atau risiko bias yang digunakan oleh peneliti (misalnya: Cochrane Risk of Bias tool, Newcastle-Ottawa Scale, atau GRADE).
+Jangan mengarang angka. Jika nilai I² tidak dicantumkan, tulis: "Nilai I² tidak dilaporkan, kewaspadaan interpretasi diperlukan."
+
+FORMAT JAWABAN YANG SAYA MINTA:
+1. Nilai Heterogenitas (I²):
+(Tuliskan persentase I² yang ditemukan pada hasil utama).
+
+2. Status Keseragaman Data:
+(Tuliskan [AMAN - Data Seragam] jika I² ≤ 50%. Tuliskan [⚠️ PERINGATAN HETEROGENITAS TINGGI] jika I² > 50%, dan tambahkan kalimat penjelasan mengapa ini menurunkan tingkat kepercayaan hasil).
+
+3. Alat Uji Kualitas/Risiko Bias:
+(Sebutkan instrumen penilaian kualitas yang digunakan penulis untuk menyeleksi jurnal).
+
+4. Kesimpulan Kelayakan (Bottom-Line):
+(Buat 1-2 kalimat kesimpulan ringkas. Apakah data meta-analisis ini cukup solid untuk diandalkan dalam pengambilan keputusan klinis?).
+
+TEKS JURNAL (BAGIAN METODE/HASIL):
+`,
+  3:`Bertindaklah sebagai Ahli Biostatistika Klinik dan Evaluasi Jurnal Meta-Analisis.
+Tugas Anda adalah melakukan dekode terhadap hasil akhir Forest Plot (yang diwakili oleh data statistik berlian/pooled estimate) dari teks jurnal yang saya berikan.
+
+LOGIKA EVALUASI YANG HARUS ANDA IKUTI:
+Identifikasi Angka Kunci: Cari nilai efek gabungan utama, biasanya ditulis dalam bentuk OR (Odds Ratio), RR (Relative Risk), atau MD (Mean Difference) beserta rentang 95% CI (Confidence Interval).
+
+Analisis Posisi Berlian (Arah Efek):
+Jika parameternya adalah Rasio (OR/RR) dan nilainya < 1 atau > 1, jelaskan kelompok mana yang diuntungkan/unggul (Intervensi vs Kontrol) berdasarkan konteks klinis jurnal.
+Tentukan di sisi mana berlian berada secara visual terhadap Line of No Effect (Garis vertikal angka 1.0 untuk rasio, atau angka 0 untuk selisih rata-rata/MD).
+
+Analisis Lebar Berlian (Signifikansi Statistik):
+PENTING: Cek apakah rentang 95% CI melewati/mencakup angka batas tersebut.
+Untuk OR/RR: Jika rentang CI mencakup angka 1.0 (misal: 0.85 hingga 1.20), berikan label [❌ TIDAK BERMAKNA SECARA STATISTIK].
+Untuk OR/RR: Jika rentang CI TIDAK mencakup angka 1.0 (misal: 0.45 hingga 0.85), berikan label [✅ SIGNIFIKAN SECARA STATISTIK].
+
+FORMAT JAWABAN YANG SAYA MINTA:
+1. Data Numerik Berlian (Pooled Estimate):
+(Tuliskan jenis parameter, nilai akhir, dan rentang 95% CI. Contoh: OR = 0.65; 95% CI: 0.48-0.88).
+
+2. Posisi Berlian (Kiri vs Kanan):
+(Jelaskan intervensi mana yang lebih unggul secara klinis berdasarkan posisi tersebut).
+
+3. Kesimpulan Signifikansi (Menyentuh Garis atau Tidak):
+(Tuliskan label status signifikansi, diikuti penjelasan ringkas apakah hasil ini benar-benar valid secara statistik atau hanya kebetulan).
+
+4. Translasi Klinis Praktis:
+(Ubah data statistik di atas menjadi 1 kalimat bahasa awam medis yang siap diaplikasikan ke pasien).
+
+TEKS DATA HASIL / METRICS JURNAL:
+`,
+  4:`Bertindaklah sebagai Ahli Translasional Keperawatan Berbasis Bukti (EBM Translational Expert).
+Tugas Anda adalah mengambil angka statistik dari teks jurnal yang saya berikan, lalu menerjemahkannya secara otomatis menjadi dampak klinis yang mudah dipahami dalam bahasa praktis.
+
+LOGIKA MATEMATIS & TRANSLASI YANG HARUS DIIKUTI:
+Ekstraksi Data: Cari nilai RR (Relative Risk) atau OR (Odds Ratio) beserta 95% CI-nya.
+
+Hitung Perubahan Risiko (Rumus Matematis):
+Jika nilai RR/OR < 1.0 (Penurunan Risiko): Hitung dengan rumus: (1.0 - nilai RR/OR) × 100%.
+Contoh: RR = 0.70 artinya "Menurunkan risiko sebesar 30%".
+Jika nilai RR/OR > 1.0 (Peningkatan Risiko): Hitung dengan rumus: (nilai RR/OR - 1.0) × 100%.
+Contoh: OR = 1.45 artinya "Meningkatkan risiko sebesar 45%".
+Jika nilai RR/OR = 1.0: Artinya tidak ada perubahan risiko sama sekali.
+
+Integrasikan Rentang Kepastian (95% CI): Terjemahkan juga batas atas dan batas bawah CI menggunakan logika rumus di atas untuk menunjukkan rentang efektivitas minimal dan maksimalnya.
+
+FORMAT JAWABAN YANG SAYA MINTA:
+📊 HASIL EKSTRAKSI ANGKA:
+Jenis Parameter: [RR / OR]
+Nilai Utama: [Angka]
+Rentang Kepastian (95% CI): [Angka Batas Bawah - Angka Batas Atas]
+
+📢 TRANSLASI KLINIS SEDERHANA:
+Berdasarkan nilai utama, intervensi ini [MENURUNKAN / MENINGKATKAN] risiko kejadian buruk sebesar [X]% dibandingkan dengan kelompok kontrol.
+Dalam kondisi nyata di lapangan, efek intervensi ini paling sedikit bisa berdampak sebesar [Y]% dan paling banyak bisa mencapai [Z]% (berdasarkan rentang 95% CI).
+
+TEKS DATA STATISTIK JURNAL:
+`,
+  5:`Bertindaklah sebagai Konsultan Implementasi Klinis Kedokteran (Clinical Implementation & Feasibility Expert).
+Tugas Anda adalah membaca bagian Kesimpulan (Conclusion) atau Diskusi (Discussion) dari jurnal yang saya berikan, lalu merangkum inti sarinya dan memicu evaluasi kelayakan klinis secara mandiri.
+
+LOGIKA EVALUASI YANG HARUS DIIKUTI:
+Ekstraksi "The Bottom Line": Ambil kesimpulan akhir paling mendasar dari jurnal tersebut tanpa banyolan bahasa ilmiah yang berbelit-belit.
+Identifikasi Efek Samping/Risiko: Cari tahu apakah jurnal menyebutkan efek samping, kerugian, atau batasan (limitations) dari intervensi yang diuji.
+Pemicu Refleksi Dokter (Self-Assessment): Buat pertanyaan penilaian mandiri yang relevan dengan fasilitas rumah sakit dan kondisi pasien riil.
+
+FORMAT JAWABAN YANG SAYA MINTA:
+🎯 KESIMPULAN AKHIR (THE BOTTOM LINE):
+(Tulis 1-2 kalimat ringkas tentang hasil akhir jurnal ini. Apa pesan utama yang ingin disampaikan peneliti?).
+
+⚠️ PROFIL RISIKO & EFEK SAMPING:
+(Sebutkan efek samping atau komplikasi yang dilaporkan oleh jurnal terkait intervensi ini).
+
+📋 CHECKLIST APLIKABILITAS KLINIS (REFLEKSI DOKTER):
+Jurnal ini baru bisa Anda ubah menjadi ILMU TERAPAN jika Anda dapat menjawab "YA" pada checklist reflektif berikut:
+[ ] Dukungan Fasilitas: Apakah fasilitas, alat medis, laboratorium, atau ketersediaan obat di rumah sakit/klinik tempat saya praktik sudah mendukung untuk menjalankan intervensi ini?
+[ ] Toleransi Pasien: Apakah profil efek samping dan risiko dari intervensi ini aman dan dapat ditoleransi oleh karakteristik pasien yang biasa saya tangani?
+[ ] Aspek Finansial/Akses: Apakah intervensi ini secara biaya dan aksesibilitas terjangkau oleh pasien saya (misalnya, apakah dicover BPJS/asuransi jika di Indonesia)?
+
+💡 KATA KUNCI STRATEGIS:
+(Berikan 1 kalimat penutup yang menentukan apakah jurnal ini layak diarsip sebagai standar prosedur baru atau sekadar jadi pengetahuan tambahan).
+
+TEKS KESIMPULAN/DISKUSI JURNAL:
+`
+};
+
+const PH = {
+  1:'[TEMPELKAN TEKS ABSTRAK ATAU JURNAL DI SINI]',
+  2:'[TEMPELKAN TEKS METODOLOGI ATAU HASIL DI SINI]',
+  3:'[TEMPELKAN PARAGRAF HASIL UTAMA ATAU KATA KUNCI ANGKA DI SINI]',
+  4:'[TEMPELKAN TEKS ATAU PARAGRAF HASIL DI SINI]',
+  5:'[TEMPELKAN TEKS KESIMPULAN ATAU DISKUSI DI SINI]',
+};
+
+const META = {
+  1:{ label:'Modul 1 — Ekstraksi PICO',        badge:'PICO',      cls:'c1-badge' },
+  2:{ label:'Modul 2 — Heterogenitas I²',       badge:'I² STAT',  cls:'c2-badge' },
+  3:{ label:'Modul 3 — Dekode Forest Plot',     badge:'FOREST',   cls:'c3-badge' },
+  4:{ label:'Modul 4 — Translasi Klinis RR/OR', badge:'TRANSLASI',cls:'c4-badge' },
+  5:{ label:'Modul 5 — Aplikabilitas Klinis',   badge:'APLIKASI', cls:'c5-badge' },
+};
+
+function init() {
+  for (let i=1;i<=5;i++) renderPreview(i);
+}
+
+// Called on every keystroke
+function updateModule(n) {
+  const raw = document.getElementById('input'+n).value;
+  const words = raw.trim()==='' ? 0 : raw.trim().split(/\s+/).length;
+  document.getElementById('info'+n).textContent =
+    raw.length > 0 ? raw.length.toLocaleString('id-ID')+' kar · '+words.toLocaleString('id-ID')+' kata' : '0 karakter';
+  renderPreview(n);
+}
+
+// Handles paste event — waits one tick for value to be available, then updates
+function handlePaste(n) {
+  setTimeout(() => updateModule(n), 0);
+}
+
+// "Kirim ke Modul" button: update preview + switch to that tab + confirm feedback
+function applyToModule(n) {
+  updateModule(n);      // ensure preview is current
+  switchTab(n);         // jump to the relevant tab on the right
+
+  // Button feedback
+  const btn = document.getElementById('abtn'+n);
+  const originalHTML = btn.innerHTML;
+  btn.classList.add('done');
+  btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Berhasil dikirim!';
+  setTimeout(() => {
+    btn.classList.remove('done');
+    btn.innerHTML = originalHTML;
+  }, 2200);
+}
+
+function renderPreview(n) {
+  const el  = document.getElementById('preview'+n);
+  const raw = document.getElementById('input'+n).value;
+  el.textContent = T[n] + (raw.trim()==='' ? PH[n] : raw);
+  raw.trim()==='' ? el.classList.remove('filled') : el.classList.add('filled');
+}
+
+function toggleCard(n) {
+  const body = document.getElementById('cbody'+n);
+  const arr  = document.getElementById('arr'+n);
+  const open = !body.classList.contains('collapsed');
+  body.classList.toggle('collapsed', open);
+  arr.classList.toggle('open', !open);
+}
+
+function switchTab(n) {
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('panel'+n).classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelector('.tab-btn[data-tab="'+n+'"]').classList.add('active');
+  const m = META[n];
+  document.getElementById('activeLabel').textContent = m.label;
+  const badge = document.getElementById('activeBadge');
+  badge.textContent = m.badge;
+  badge.className = 'meta-badge '+m.cls;
+}
+
+function copyPrompt(n, btn) {
+  const raw  = document.getElementById('input'+n).value;
+  const text = T[n] + (raw.trim()==='' ? PH[n] : raw);
+  const go   = ()=>{
+    const lbl=btn.querySelector('.btn-label'), ic=btn.querySelector('svg');
+    btn.classList.add('copied');
+    lbl.textContent='Tersalin!';
+    if(ic) ic.innerHTML='<polyline points="20 6 9 17 4 12"/>';
+    setTimeout(()=>{
+      btn.classList.remove('copied');
+      lbl.textContent='Salin Prompt';
+      if(ic) ic.innerHTML='<rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>';
+    },2000);
+  };
+  navigator.clipboard && navigator.clipboard.writeText
+    ? navigator.clipboard.writeText(text).then(go).catch(()=>fb(text,go))
+    : fb(text,go);
+}
+
+function copyAllPrompts() {
+  let all='';
+  for(let i=1;i<=5;i++){
+    const raw=document.getElementById('input'+i).value;
+    const txt=raw.trim()===''?PH[i]:raw;
+    all+='='.repeat(64)+'\n✦ '+META[i].label+'\n'+'='.repeat(64)+'\n\n'+T[i]+txt+'\n\n';
+  }
+  const btn=document.getElementById('copyAllBtn');
+  const go=()=>{
+    btn.innerHTML='<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#15803d" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Tersalin!';
+    btn.style.color='#15803d'; btn.style.borderColor='#86efac'; btn.style.background='#f0fdf4';
+    setTimeout(()=>{
+      btn.innerHTML='<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Salin Semua';
+      btn.style.color=''; btn.style.borderColor=''; btn.style.background='';
+    },2500);
+  };
+  navigator.clipboard && navigator.clipboard.writeText
+    ? navigator.clipboard.writeText(all).then(go).catch(()=>fb(all,go))
+    : fb(all,go);
+}
+
+function clearAll() {
+  for(let i=1;i<=5;i++){
+    document.getElementById('input'+i).value='';
+    document.getElementById('info'+i).textContent='0 karakter';
+    renderPreview(i);
+  }
+}
+
+function fb(text,cb){
+  const ta=document.createElement('textarea');
+  ta.value=text; ta.style.cssText='position:fixed;opacity:0;';
+  document.body.appendChild(ta); ta.select();
+  document.execCommand('copy'); document.body.removeChild(ta);
+  if(cb) cb();
+}
+
+init();
+</script>
+</body>
+</html>
